@@ -18,9 +18,9 @@ get "/" do
   reddit = request.env["redd.session"]
 
   if reddit
-    "Hello /u/#{reddit.me.name}! <a href='/logout'>Logout</a>"
+    erb :home, locals: { name: reddit.me.name }
   else
-    "<a href='/auth/reddit'>Sign in with reddit</a>"
+    erb :sign_in
   end
 end
 

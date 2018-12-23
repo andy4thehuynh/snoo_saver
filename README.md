@@ -9,6 +9,6 @@ Features to include:
 
 
 #### Tech
-- Sinatra (web framework)
-- Redd (Reddit API wrapper)
-- Dotenv (environment store)
+- [Sinatra](https://github.com/sinatra/sinatra) (web framework)
+- [Redd](https://github.com/avinashbot/redd) (Reddit API wrapper)
+- [Dotenv](https://github.com/bkeepers/dotenv) (environment store)
