@@ -1,1 +1,43 @@
 Hello /u/<%= name %>! <a href="/logout">Logout</a>
+
+subreddit_name_prefixed
+author_fullname
+title
+name (could be an id) IT IS
+score
+thumbnail
+url
+
+<table class="table">
+  <thead>
+    <tr>
+      <td>#</td>
+      <td></td>
+      <td>Score</td>
+      <td>Title</td>
+      <td>Subreddit</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% bookmarks.each_with_index do |bm, i| -%>
+      <tr>
+        <td><%= i + 1 %></td>
+        <td><img src="<%= bm[:thumbnail] %>" class="img-fluid" alt="n/a"></td>
+        <td><%= bm[:score] %></td>
+        <td>
+          <% if bm[:title] -%>
+            <a href="<%= bm[:url] %>" target="_blank">
+              <%= bm[:title] %>
+            </a>
+          <% else -%>
+            Comment
+          <% end -%>
+            by <%= bm[:name] %>
+            by <%= bm[:author_fullname] %>
+        </td>
+
+        <td><%= bm[:subreddit_name_prefixed] %></td>
+      </tr>
+    <% end -%>
+  </tbody>
+</table>

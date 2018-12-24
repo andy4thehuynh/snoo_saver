@@ -27,3 +27,4 @@ public/theme_assets
 /doc/*
 
 /.ruby-version
+/.byebug_history
