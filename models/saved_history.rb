@@ -16,20 +16,16 @@ class SavedHistory
 
     history_listings = page_history
     page_listing = PageListing.new(history_listings)
+
     while page_listing.fetchable?
-      puts '----'
-      puts "after value: #{page_listing.after_param}"
-      puts "fetchable?: #{page_listing.fetchable?}"
       all_listings << page_listing.collect_listings
 
       count += RedditIntegration::PAGE_LIMIT
-      puts "count: #{count}"
 
       history_listings = page_history(page_listing.after_param, count)
       page_listing = PageListing.new(history_listings) if history_listings
     end
 
-    puts "end count: #{count}"
     all_listings.flatten
   end
 

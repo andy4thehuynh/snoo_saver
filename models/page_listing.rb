@@ -11,10 +11,6 @@ class PageListing
 
   def fetchable?
     after_param.present?
-    # puts "nil: #{!after_param.nil?}"
-    # puts "blank: #{after_param != ""}"
-    # !after_param.nil? || after_param != ""
-    # after_param != "" || listing.body.fetch(:data)
   end
 
   def collect_listings

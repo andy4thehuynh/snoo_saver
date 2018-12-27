@@ -27,8 +27,8 @@ get "/" do
 
   if req
     history = SavedHistory.new(req)
-    # bookmarks = history.get_some_listings
-    bookmarks = history.get_all
+    bookmarks = history.get_some_listings
+    # bookmarks = history.get_all
 
     erb :home, locals: { bookmarks: bookmarks, name: req.me.name }
   else
