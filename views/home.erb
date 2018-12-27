@@ -1,13 +1,5 @@
 Hello /u/<%= name %>! <a href="/logout">Logout</a>
 
-subreddit_name_prefixed
-author_fullname
-title
-name (could be an id) IT IS
-score
-thumbnail
-url
-
 <table class="table">
   <thead>
     <tr>
@@ -15,7 +7,6 @@ url
       <td></td>
       <td>Score</td>
       <td>Title</td>
-      <td>Subreddit</td>
     </tr>
   </thead>
   <tbody>
@@ -32,11 +23,9 @@ url
           <% else -%>
             Comment
           <% end -%>
-            by <%= bm[:name] %>
-            by <%= bm[:author_fullname] %>
+            by <%= bm[:author] %>
+            <%= bm[:subreddit_name_prefixed] %>
         </td>
-
-        <td><%= bm[:subreddit_name_prefixed] %></td>
       </tr>
     <% end -%>
   </tbody>

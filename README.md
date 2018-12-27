@@ -6,6 +6,7 @@ Features to include:
 - Search support
 - Filtering by subreddits
 - Links to the target post or comment
+- Pinning posts to the top
 
 
 #### Tech
