@@ -1,6 +1,7 @@
 require "dotenv"
 Dotenv.load
 
+require "active_support/all"
 require "byebug"
 require "sinatra"
 require "sinatra/reloader" if development?
@@ -17,7 +18,7 @@ use Redd::Middleware,
     user_agent:   "Redd:Username App:v1.0.0 (by /u/snoo_saver)",
     client_id:    ENV["REDDIT_CLIENT_ID"],
     secret:       ENV["REDDIT_SECRET"],
-    redirect_uri: "http://localhost:4567/auth/reddit/callback",
+    redirect_uri: ENV["REDIRECT_URI"],
     scope:        %w(identity, history),
     via:          "/auth/reddit"
 
@@ -25,8 +26,9 @@ get "/" do
   req = request.env["redd.session"]
 
   if req
-    content = SavedContent.new(req)
-    bookmarks = content.get_a_handfull
+    history = SavedHistory.new(req)
+    # bookmarks = history.get_some_listings
+    bookmarks = history.get_all
 
     erb :home, locals: { bookmarks: bookmarks, name: req.me.name }
   else
