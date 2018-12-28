@@ -23,14 +23,12 @@ use Redd::Middleware,
     via:          "/auth/reddit"
 
 get "/" do
-  req = request.env["redd.session"]
-
-  if req
-    history = SavedHistory.new(req)
+  if reddit_session
+    history = SavedHistory.new(reddit_session)
     bookmarks = history.get_some_listings
     # bookmarks = history.get_all
 
-    erb :home, locals: { bookmarks: bookmarks, name: req.me.name }
+    erb :home, locals: { bookmarks: bookmarks, name: reddit_session.me.name }
   else
     erb :sign_in
   end
@@ -44,5 +42,9 @@ end
 get "/logout" do
   request.env["redd.session"] = nil
   redirect to("/")
+end
+
+def reddit_session
+  request.env["redd.session"]
 end
 

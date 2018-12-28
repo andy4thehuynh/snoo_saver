@@ -1,10 +1,10 @@
 class RedditIntegration
   PAGE_LIMIT = 100
 
-  attr_reader :request
+  attr_reader :session
 
-  def initialize(request)
-    @request = request
+  def initialize(session)
+    @session = session
   end
 
   def get_save_history(after, count)
@@ -14,7 +14,7 @@ class RedditIntegration
   private
 
   def client
-    request.client
+    session.client
   end
 
   def path
@@ -22,6 +22,6 @@ class RedditIntegration
   end
 
   def name
-    request.me.name
+    session.me.name
   end
 end
