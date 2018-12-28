@@ -1,8 +1,8 @@
 class SavedHistory
-  attr_reader :request
+  attr_reader :session
 
-  def initialize(request)
-    @request = request
+  def initialize(session)
+    @session = session
   end
 
   def get_some_listings
@@ -36,7 +36,7 @@ class SavedHistory
   end
 
   def client
-    @client ||= RedditIntegration.new(request)
+    @client ||= RedditIntegration.new(session)
   end
 end
 

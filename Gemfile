@@ -8,4 +8,5 @@ gem "sinatra-contrib", "~> 2.0.5"
 
 group :development do
   gem "byebug"
+  gem "shotgun"
 end
