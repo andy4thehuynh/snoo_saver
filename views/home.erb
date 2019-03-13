@@ -10,21 +10,21 @@ Hello /u/<%= name %>! <a href="/logout">Logout</a>
     </tr>
   </thead>
   <tbody>
-    <% bookmarks.each_with_index do |bm, i| -%>
+    <% listings.each_with_index do |listing, i| -%>
       <tr>
         <td><%= i + 1 %></td>
-        <td><img src="<%= bm[:thumbnail] %>" class="img-fluid" alt="n/a"></td>
-        <td><%= bm[:score] %></td>
+        <td><img src="<%= listing[:thumbnail] %>" class="img-fluid" alt="n/a"></td>
+        <td><%= listing[:score] %></td>
         <td>
-          <% if bm[:title] -%>
-            <a href="<%= bm[:url] %>" target="_blank">
-              <%= bm[:title] %>
+          <% if listing[:title] -%>
+            <a href="<%= listing[:url] %>" target="_blank">
+              <%= listing[:title] %>
             </a>
           <% else -%>
             Comment
           <% end -%>
-            by <%= bm[:author] %>
-            <%= bm[:subreddit_name_prefixed] %>
+            by <%= listing[:author] %>
+            <%= listing[:subreddit_name_prefixed] %>
         </td>
       </tr>
     <% end -%>

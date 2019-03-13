@@ -1,3 +1,6 @@
+# SavedHistory#sample returns 100 saved listings by default
+# SavedHistory#all returns as many saved listings as it can.
+
 class SavedHistory
   attr_reader :session
 
@@ -5,34 +8,33 @@ class SavedHistory
     @session = session
   end
 
-  def get_some_listings
-    listing = page_history
-    PageListing.new(listing).collect_listings
+  def sample
+    paginator.format
   end
 
-  def get_all
-    all_listings = []
+  def all
+    listings = []
     count = 0
 
-    history_listings = page_history
-    page_listing = PageListing.new(history_listings)
+    page = paginator
 
-    while page_listing.fetchable?
-      all_listings << page_listing.collect_listings
+    while page.more_listings?
+      listings << page.format
 
       count += RedditIntegration::PAGE_LIMIT
+      puts "listings count: #{count}"
 
-      history_listings = page_history(page_listing.after_param, count)
-      page_listing = PageListing.new(history_listings) if history_listings
+      page = paginator(page.after_param, count)
     end
 
-    all_listings.flatten
+    listings.flatten
   end
 
   private
 
-  def page_history(after=nil, count=0)
-    client.get_save_history(after, count)
+  def paginator(after = nil, count = nil)
+    json = client.retrieve_history(after, count)
+    ListingsPaginator.new(json) if json
   end
 
   def client

@@ -1,3 +1,8 @@
+# Initializes a client to retrieve saved history for a user.
+#
+# https://old.reddit.com/dev/api#GET_user_{username}_{where}
+# https://old.reddit.com/dev/api#listings
+
 class RedditIntegration
   PAGE_LIMIT = 100
 
@@ -7,7 +12,7 @@ class RedditIntegration
     @session = session
   end
 
-  def get_save_history(after, count)
+  def retrieve_history(after = nil, count = nil)
     client.get(path, limit: PAGE_LIMIT, after: after, count: count)
   end
 

@@ -24,11 +24,17 @@ use Redd::Middleware,
 
 get "/" do
   if reddit_session
-    history = SavedHistory.new(reddit_session)
-    bookmarks = history.get_some_listings
-    # bookmarks = history.get_all
+    listings = SavedHistory.new(reddit_session).all
+    erb :home, locals: { listings: listings, name: reddit_session.me.name }
+  else
+    erb :sign_in
+  end
+end
 
-    erb :home, locals: { bookmarks: bookmarks, name: reddit_session.me.name }
+get "/sample" do
+  if reddit_session
+    listings = SavedHistory.new(reddit_session).sample
+    erb :home, locals: { listings: listings, name: reddit_session.me.name }
   else
     erb :sign_in
   end
