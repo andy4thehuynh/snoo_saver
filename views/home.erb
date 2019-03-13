@@ -4,6 +4,7 @@ Hello /u/<%= name %>! <a href="/logout">Logout</a>
   <thead>
     <tr>
       <td>#</td>
+      <td>Id</td>
       <td></td>
       <td>Score</td>
       <td>Title</td>
@@ -13,6 +14,7 @@ Hello /u/<%= name %>! <a href="/logout">Logout</a>
     <% listings.each_with_index do |listing, i| -%>
       <tr>
         <td><%= i + 1 %></td>
+        <td><%= listing[:author_fullname] %></td>
         <td><img src="<%= listing[:thumbnail] %>" class="img-fluid" alt="n/a"></td>
         <td><%= listing[:score] %></td>
         <td>

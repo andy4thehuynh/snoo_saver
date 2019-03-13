@@ -13,7 +13,12 @@ class RedditIntegration
   end
 
   def retrieve_history(after = nil, count = nil)
-    client.get(path, limit: PAGE_LIMIT, after: after, count: count)
+    client.get(
+      path,
+      limit: PAGE_LIMIT,
+      after: after,
+      count: count
+    )
   end
 
   private
